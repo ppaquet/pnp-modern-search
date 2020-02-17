@@ -31,7 +31,7 @@ import IBaseRefinerTemplateState from '../IBaseRefinerTemplateState';
 const sufixes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
 const getBytes = (bytes) => {
   const i = Math.floor(Math.log(bytes) / Math.log(1024));
-  return !bytes && '0 Bytes' || (bytes / Math.pow(1024, i)).toFixed(2) + " " + sufixes[i];
+  return !bytes && '0 Bytes' || (bytes / Math.pow(1024, i)).toFixed(0) + " " + sufixes[i];
 };
 
 
@@ -60,10 +60,7 @@ export default class FileSizeTemplate extends React.Component<IBaseRefinerTempla
         {
           this.props.refinementResult.Values.map((refinementValue: IRefinementValue, j) => {
 
-            {console.log("refinementResult.Values : ",this.props.refinementResult.Values)}
-
             if (refinementValue.RefinementCount === 0) {
-              console.log("null");
               return null;
             }
 
@@ -73,11 +70,11 @@ export default class FileSizeTemplate extends React.Component<IBaseRefinerTempla
 
             rangeSize = "";
 
-            splitExt.forEach(function (elem, index) {
+            splitExt.forEach((elem:string, index:number) => {
 
               let isNumber =  !/\D/.test(elem);
               // If elem is a number
-              if (isNumber ) elem = getBytes(elem);
+              if (isNumber )  elem = getBytes(elem);
 
               // Add elem to main string
               rangeSize = rangeSize + elem + " ";
@@ -171,7 +168,6 @@ export default class FileSizeTemplate extends React.Component<IBaseRefinerTempla
     let newFilters = this.state.refinerSelectedFilterValues.filter((filter) => {
       return filter.RefinementToken === valueToCheck.RefinementToken || filter.RefinementName === valueToCheck.RefinementName;
     });
-    console.log("newFilters.length : ",newFilters.length);
     return newFilters.length === 0 ? false : true;
   }
 
@@ -220,7 +216,6 @@ export default class FileSizeTemplate extends React.Component<IBaseRefinerTempla
    * Applies all selected filters for the current refiner
    */
   private _applyFilters = (updatedValues: IRefinementValue[]) => {
-    console.log("FilterName : ",this.props.refinementResult.FilterName);
     this.props.onFilterValuesUpdated(this.props.refinementResult.FilterName, updatedValues, this._operator);
   }
 
