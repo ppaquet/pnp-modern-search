@@ -67,21 +67,20 @@ export default class FileSizeTemplate extends React.Component<IBaseRefinerTempla
               return null;
             }
 
-            let extension: string = refinementValue.RefinementValue.toLowerCase();
+            let rangeSize: string = refinementValue.RefinementValue.toLowerCase();
 
-            let splitExt= extension.split(" ");
+            let splitExt= rangeSize.split(" ");
 
-            extension = "";
+            rangeSize = "";
 
             splitExt.forEach(function (elem, index) {
 
-              var isNumber =  !/\D/.test(elem);
+              let isNumber =  !/\D/.test(elem);
               // If elem is a number
               if (isNumber ) elem = getBytes(elem);
 
-              // Otherwise log it to the console
-              console.log("elem : ", elem);
-              extension = extension + elem + " ";
+              // Add elem to main string
+              rangeSize = rangeSize + elem + " ";
             });
 
 
@@ -96,16 +95,14 @@ export default class FileSizeTemplate extends React.Component<IBaseRefinerTempla
                 key={j}
                 checked={this._isValueInFilterSelection(refinementValue)}
                 onChange={(ev, checked: boolean) => {
-                  refinementValue.RefinementName = FileHelper.extensionToLabel(extension);
+                  refinementValue.RefinementName = FileHelper.extensionToLabel(rangeSize);
                   checked ? this._onFilterAdded(refinementValue) : this._onFilterRemoved(refinementValue);
                 }}
                 theme={this.props.themeVariant as ITheme}
                 onRenderLabel={() => {
                   return (
                     <>
-                    {console.log("extension",extension)}
-                      <Icon {...getFileTypeIconProps({ extension: extension, size: 20, imageFileType: 'svg' })} />
-                      <TextUI className='pnp-lbl' block={true} nowrap={true}>{extension}</TextUI>
+                        <TextUI className='pnp-lbl' block={true} nowrap={true}>{rangeSize}</TextUI>
                     </>
                   );
                 }}
