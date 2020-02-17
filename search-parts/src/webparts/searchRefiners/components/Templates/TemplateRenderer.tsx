@@ -2,6 +2,7 @@ import * as React from 'react';
 import RefinerTemplateOption from '../../../../models/RefinerTemplateOption';
 import CheckboxTemplate from "./Checkbox/CheckboxTemplate";
 import DateRangeTemplate from "./DateRange/DateRangeTemplate";
+import FileSizeTemplate from "./FileSize/FileSizeTemplate";
 import FixedDateRangeTemplate from "./FixedDateRange/FixedDateRangeTemplate";
 import PersonaTemplate from "./Persona/PersonaTemplate";
 import FileTypeTemplate from "./FileType/FileTypeTemplate";
@@ -165,6 +166,18 @@ export default class TemplateRenderer extends React.Component<ITemplateRendererP
             selectedValues={this.props.selectedValues}
           />;
           break;
+
+      case RefinerTemplateOption.FileSize:
+        renderTemplate = <FileSizeTemplate
+          refinementResult={this.props.refinementResult}
+          onFilterValuesUpdated={this.props.onFilterValuesUpdated}
+          shouldResetFilters={this.props.shouldResetFilters}
+          isMultiValue={false}
+          themeVariant={this.props.themeVariant}
+          removeFilterValue={this.props.valueToRemove}
+          selectedValues={this.props.selectedValues}
+        />;
+        break;
 
       default:
 

@@ -162,7 +162,7 @@ export default class SearchRefinersContainer extends React.Component<ISearchRefi
     });
 
     dateFilters.map(dateFilter => {
-
+      console.log(dateFilter);
       // Is the filter currently selected?
       const isSelected = this.state.selectedRefinementFilters.map(filter => { return filter.FilterName === dateFilter.refinerName; }).length > 0 ? true : false;
 

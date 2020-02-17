@@ -1,0 +1,15 @@
+.pnpRefinersTemplateFileSize {
+  margin-bottom: 18px;
+  :global {
+    .pnp-shimmer {
+      margin-top: 8px;
+      margin-left: 2px;
+      .ms-Shimmer-shimmerWrapper {
+        display: flex;
+      }
+    }
+    .pnp-FileSize {
+      cursor: pointer;
+    }
+  }
+}

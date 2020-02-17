@@ -38,6 +38,7 @@ declare interface ISearchRefinersWebPartStrings {
             PersonaRefinementItemLabel: string;
             FileTypeRefinementItemTemplateLabel: string;
             FileTypeMutliValueRefinementItemTemplateLabel: string;
+            FileSizeRefinementItemTemplateLabel: string;
             ContainerTreeRefinementItemTemplateLabel: string;
             DateFromLabel: string;
             DateTolabel: string;

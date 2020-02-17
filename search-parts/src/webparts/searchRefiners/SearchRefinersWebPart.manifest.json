@@ -38,7 +38,7 @@
         {
           "refinerName": "Size",
           "displayValue": "Size of the file",
-          "refinerSortType": 2,
+          "refinerSortType": 10,
           "refinerSortDirection": 2
         },
         {
